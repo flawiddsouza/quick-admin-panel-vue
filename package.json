@@ -14,5 +14,15 @@
         "@vitejs/plugin-vue": "^1.2.3",
         "@vue/compiler-sfc": "^3.0.5",
         "vite": "^2.3.7"
+    },
+    "files": ["dist"],
+    "main": "./dist/quick-admin-panel-vue.umd.js",
+    "module": "./dist/quick-admin-panel-vue.es.js",
+    "exports": {
+        ".": {
+            "import": "./dist/quick-admin-panel-vue.es.js",
+            "require": "./dist/quick-admin-panel-vue.umd.js"
+        },
+        "./dist/style.css": "./dist/style.css"
     }
 }

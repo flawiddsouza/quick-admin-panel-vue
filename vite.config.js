@@ -9,5 +9,19 @@ export default defineConfig({
         alias: {
             '@': path.resolve(__dirname, './src')
         }
+    },
+    build: {
+        lib: {
+            entry: path.resolve(__dirname, './src/index.js'),
+            name: 'QuickAdminPanelVue'
+        },
+        rollupOptions: {
+            external: ['vue'],
+            output: {
+                globals: {
+                    vue: 'Vue'
+                }
+            }
+        }
     }
 })
