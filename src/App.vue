@@ -1,10 +1,8 @@
 <template>
-    <ContainerDemo />
+    <div>
+        <router-view></router-view>
+    </div>
 </template>
-
-<script setup>
-import ContainerDemo from '@/components-demo/ContainerDemo.vue'
-</script>
 
 <style>
 * {
