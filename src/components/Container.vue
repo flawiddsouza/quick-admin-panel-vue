@@ -13,7 +13,9 @@
                     <input type="search" placeholder="Search..." class="sidebar-filter" v-model="filter">
                 </div>
                 <template v-for="item in filteredItems">
-                    <a :href="item.link" class="sidebar-item" :class="{ active: selectedItem && selectedItem.name === item.name }" @click="selectedItem = item">{{ item.name }}</a>
+                    <div class="sidebar-item">
+                        <slot name="sidebar-item" :item="item" :select-item="() => selectedItem = item" :is-active="selectedItem && selectedItem.name === item.name"></slot>
+                    </div>
                 </template>
             </aside>
             <div class="content">
@@ -59,7 +61,7 @@ aside {
     width: 100%;
 }
 
-.sidebar-item {
+.sidebar-item ::v-deep(a) {
     display: block;
     color: var(--sidebar-item-text-color, white);
     text-decoration: none;
@@ -67,13 +69,14 @@ aside {
     padding-bottom: 0.4rem;
     padding-left: 0.7rem;
     transition: background-color 0.5s ease;
+    cursor: pointer;
 }
 
 .sidebar-item:hover {
     background-color: var(--sidebar-item-hover-background-color, #981010);
 }
 
-.sidebar-item.active {
+.sidebar-item ::v-deep(a.active) {
     background-color: var(--sidebar-item-active-background-color, #800);
 }
 
