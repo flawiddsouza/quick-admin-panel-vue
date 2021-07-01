@@ -88,7 +88,7 @@ aside {
 }
 
 nav {
-    box-shadow: 0 0 8px #909192;
+    box-shadow: 0 0 6px #bbc2ca;
     background-color: white;
     width: 100%;
     padding: 5px 0;
