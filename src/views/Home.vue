@@ -8,6 +8,9 @@
             <li>
                 <router-link to="/demos/DataTable">DataTable</router-link>
             </li>
+            <li>
+                <router-link to="/demos/Loading">Loading</router-link>
+            </li>
         </ul>
     </div>
 </template>
