@@ -1,6 +1,6 @@
 <template>
     <div style="display: flex; flex-direction: column; height: 100vh">
-        <nav style="display: flex; flex-direction: row; align-items: center;">
+        <nav style="display: flex; align-items: center;">
             <slot name="navbar">
                 <div style="height: 100%; width: 200px; font-size: 1.5rem; display: flex; justify-content: center; align-items: center;">
                     Software Logo
