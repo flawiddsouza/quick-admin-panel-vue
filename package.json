@@ -2,7 +2,7 @@
     "name": "quick-admin-panel-vue",
     "version": "0.0.0",
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --port 3002",
         "build": "vite build",
         "serve": "vite preview"
     },
