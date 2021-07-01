@@ -12,9 +12,9 @@
                 <div style="position: sticky; top: 0; padding: 0.7rem 0.5rem; background-color: var(--sidebar-background-color, brown);">
                     <input type="search" placeholder="Search..." class="sidebar-filter" v-model="filter">
                 </div>
-                <template v-for="item in filteredItems">
+                <template v-for="sidebarItem in filteredSidebarItems">
                     <div class="sidebar-item">
-                        <slot name="sidebar-item" :item="item" :select-item="() => selectedItem = item" :is-active="selectedItem && selectedItem.name === item.name"></slot>
+                        <slot name="sidebar-item" :sidebar-item="sidebarItem" :select-sidebar-item="() => selectedSidebarItem = sidebarItem" :is-active="selectedSidebarItem && selectedSidebarItem.name === sidebarItem.name"></slot>
                     </div>
                 </template>
             </aside>
@@ -29,20 +29,20 @@
 import { defineProps, ref, computed } from 'vue'
 
 const props = defineProps({
-    items: Array
+    sidebarItems: Array
 })
 
 const filter = ref('')
 
-const filteredItems = computed(() => {
+const filteredSidebarItems = computed(() => {
     if(filter.value) {
-        return props.items.filter(item => item.name.toLowerCase().includes(filter.value.toLowerCase()))
+        return props.sidebarItems.filter(item => item.name.toLowerCase().includes(filter.value.toLowerCase()))
     } else {
-        return props.items
+        return props.sidebarItems
     }
 })
 
-const selectedItem = ref(null)
+const selectedSidebarItem = ref(null)
 </script>
 
 <style scoped>
@@ -59,6 +59,7 @@ aside {
     border: 1px solid #a7a2a2;
     padding: 0.2rem;
     width: 100%;
+    outline: 0;
 }
 
 .sidebar-item ::v-deep(a) {

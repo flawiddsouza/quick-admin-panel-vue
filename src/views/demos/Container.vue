@@ -1,8 +1,8 @@
 <template>
-    <Container :items="items">
+    <Container :sidebar-items="sidebarItems">
         <div style="padding: 1em">{{ selectedItem }}</div>
-        <template #sidebar-item="{ item, selectItem, isActive }">
-            <a @click="handleClick(item, selectItem)" :class="{ 'active': isActive }">{{ item.name }}</a>
+        <template #sidebar-item="{ sidebarItem, selectSidebarItem, isActive }">
+            <a @click="handleClick(sidebarItem, selectSidebarItem)" :class="{ 'active': isActive }">{{ sidebarItem.name }}</a>
         </template>
     </Container>
 </template>
@@ -11,10 +11,10 @@
 import Container from '@/components/Container.vue'
 import { ref } from 'vue'
 
-const items = []
+const sidebarItems = []
 
 for(let i=1; i<=100; i++) {
-    items.push({
+    sidebarItems.push({
         name: 'Sidebar Item ' + i,
         link: '#box' + i
     })
@@ -22,8 +22,8 @@ for(let i=1; i<=100; i++) {
 
 const selectedItem = ref(null)
 
-function handleClick(item, selectItem) {
-    selectedItem.value = item
-    selectItem()
+function handleClick(sidebarItem, selectSidebarItem) {
+    selectedItem.value = sidebarItem
+    selectSidebarItem()
 }
 </script>
