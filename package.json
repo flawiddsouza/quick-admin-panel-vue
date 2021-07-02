@@ -4,12 +4,14 @@
     "scripts": {
         "dev": "vite --port 3002",
         "build": "vite build && node compile-scss.mjs && rm dist/assets dist/favicon.ico -r",
-        "serve": "vite preview"
+        "serve": "vite preview",
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^1.2.3",
         "@vue/compiler-sfc": "^3.0.5",
         "chalk": "^4.1.1",
+        "husky": "^7.0.0",
         "sass": "^1.35.1",
         "vite": "^2.3.7",
         "vue": "^3.0.5",
