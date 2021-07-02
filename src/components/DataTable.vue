@@ -51,7 +51,7 @@
             </table>
         </div>
         <br>
-        <div class="f-l">
+        <div style="float: left">
             <template v-if="paginator.total > 0">
                 From {{ paginator.from }} to {{ paginator.to }} of {{ paginator.total }} entries (filtered from {{ paginator.unfilteredTotal }} total records) {{ selectedItemsCountText }}
             </template>
@@ -404,6 +404,10 @@ export default {
 }
 
 .datatable > .w-100p > table th {
+    text-align: center;
+}
+
+.datatable .ta-c {
     text-align: center;
 }
 
