@@ -59,7 +59,7 @@
                 No records were found (filtered from {{ paginator.unfilteredTotal }} total records)
             </template>
         </div>
-        <div class="paginator f-r" :class="{ 'disable-all': loading }">
+        <div class="paginator" :class="{ 'disable-all': loading }">
             <button :class="buttonClass" @click="fetchItemsForPage(paginator.firstPage)" :disabled="paginator.firstPage === paginator.currentPage">First</button>
             <button :class="buttonClass" @click="fetchItemsForPage(paginator.currentPage - 1)" :disabled="paginator.firstPage === paginator.currentPage">&lt;</button>
             <button @click="fetchItemsForPage(pageSwitch - 3)" :class="{active: (pageSwitch - 3) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 3">{{ pageSwitch - 3 }}</button>
@@ -405,6 +405,10 @@ export default {
 
 .datatable > .w-100p > table th {
     text-align: center;
+}
+
+.paginator {
+    float: right;
 }
 
 .paginator button {
