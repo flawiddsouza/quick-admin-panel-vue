@@ -1,6 +1,6 @@
 <template>
     <div style="padding: 2em">
-        <DataTable :fields="fields" route="demo" :demo="true"></DataTable>
+        <DataTable url="/demo" :fields="fields" :demo="true"></DataTable>
     </div>
 </template>
 

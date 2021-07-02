@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-if="!route || loading">
+                    <tr v-if="!url || loading">
                         <td colspan="100%" class="ta-c">Loading</td>
                     </tr>
                     <template v-else>
@@ -95,7 +95,7 @@ function debounce(func, wait, immediate) {
 
 export default {
     props: {
-        route: String,
+        url: String,
         fields: Array,
         itemActionsWidth: String,
         bus: Object,
@@ -134,8 +134,8 @@ export default {
         }
     },
     watch: {
-        route() {
-            if(this.route) {
+        url() {
+            if(this.url) {
                 // reset sort
                 this.sortField = ''
                 this.previousSortField = ''
@@ -239,13 +239,15 @@ export default {
                     }
                 }
             }
+
             this.paginator.currentPage = page
             this.loading = true
-            var route = this.route.split('?')
-            if(route.length > 1) {
-                route = this.route + '&'
+
+            let url = this.url.split('?')
+            if(url.length > 1) {
+                url = this.url + '&'
             } else {
-                route = this.route + '?'
+                url = this.url + '?'
             }
 
             if(this.checkboxes) { // reset checkboxes
@@ -279,10 +281,10 @@ export default {
 
             let currentDataFreshnessTimestamp = new Date().getTime()
 
-            axios.get(`${route}page=${page}&filter=${encodeURIComponent(this.filter)}&sort_by=${this.sortField}&sort_order=${this.sortOrder}&limit=${this.limit ? this.limit : ''}`).then(response => {
+            axios.get(`${url}page=${page}&filter=${encodeURIComponent(this.filter)}&sort_by=${this.sortField}&sort_order=${this.sortOrder}&limit=${this.limit ? this.limit : ''}`).then(response => {
                 response = response.data
                 if(!response.paginator) {
-                    console.error('%cDataTable', 'font-weight: bold', 'Given route does not implement laravel pagination')
+                    console.error('%cDataTable', 'font-weight: bold', 'Given url does not implement laravel pagination')
                     return
                 }
 
@@ -318,7 +320,7 @@ export default {
         }
     },
     created() {
-        if(this.route) {
+        if(this.url) {
             this.fetchItemsForPage(1, true)
         }
         if(this.bus) {
