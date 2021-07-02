@@ -17,6 +17,9 @@
             <li>
                 <router-link to="/demos/tabs">Tabs</router-link>
             </li>
+            <li>
+                <router-link to="/demos/modal">Modal</router-link>
+            </li>
         </ul>
     </div>
 </template>

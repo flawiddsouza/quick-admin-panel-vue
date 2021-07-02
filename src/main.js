@@ -9,6 +9,7 @@ import DataTable from '@/views/demos/DataTable.vue'
 import Loading from '@/views/demos/Loading.vue'
 import ButtonsStyle1 from '@/views/demos/ButtonsStyle1.vue'
 import Tabs from '@/views/demos/Tabs.vue'
+import Modal from '@/views/demos/Modal.vue'
 
 import loading from './plugins/loading'
 
@@ -19,6 +20,7 @@ const routes = [
     { path: '/demos/loading', component: Loading },
     { path: '/demos/buttons-style-1', component: ButtonsStyle1 },
     { path: '/demos/tabs', component: Tabs },
+    { path: '/demos/modal', component: Modal },
 ]
 
 const router = createRouter({
