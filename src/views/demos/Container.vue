@@ -1,6 +1,6 @@
 <template>
     <Container :sidebar-items="sidebarItems">
-        <div style="padding: 1em">{{ selectedItem }}</div>
+        <Page :title="selectedItem.name" v-if="selectedItem">{{ selectedItem }}</Page>
         <template #sidebar-item="{ sidebarItem, selectSidebarItem, isActive }">
             <a @click="handleClick(sidebarItem, selectSidebarItem)" :class="{ 'active': isActive }">{{ sidebarItem.name }}</a>
         </template>
@@ -9,6 +9,7 @@
 
 <script setup>
 import Container from '@/components/Container.vue'
+import Page from '@/components/Page.vue'
 import { ref } from 'vue'
 
 const sidebarItems = []
