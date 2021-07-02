@@ -8,6 +8,7 @@ import Container from '@/views/demos/Container.vue'
 import DataTable from '@/views/demos/DataTable.vue'
 import Loading from '@/views/demos/Loading.vue'
 import ButtonsStyle1 from '@/views/demos/ButtonsStyle1.vue'
+import Tabs from '@/views/demos/Tabs.vue'
 
 import loading from './plugins/loading'
 
@@ -17,6 +18,7 @@ const routes = [
     { path: '/demos/datatable', component: DataTable },
     { path: '/demos/loading', component: Loading },
     { path: '/demos/buttons-style-1', component: ButtonsStyle1 },
+    { path: '/demos/tabs', component: Tabs },
 ]
 
 const router = createRouter({

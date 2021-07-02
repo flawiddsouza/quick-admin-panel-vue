@@ -14,6 +14,9 @@
             <li>
                 <router-link to="/demos/buttons-style-1">Buttons Style 1</router-link>
             </li>
+            <li>
+                <router-link to="/demos/tabs">Tabs</router-link>
+            </li>
         </ul>
     </div>
 </template>
