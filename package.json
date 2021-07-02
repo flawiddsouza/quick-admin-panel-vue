@@ -3,17 +3,21 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "vite --port 3002",
-        "build": "vite build",
+        "build": "vite build && node compile-scss.mjs && rm dist/assets dist/favicon.ico -r",
         "serve": "vite preview"
     },
     "devDependencies": {
         "@vitejs/plugin-vue": "^1.2.3",
         "@vue/compiler-sfc": "^3.0.5",
+        "chalk": "^4.1.1",
+        "sass": "^1.35.1",
         "vite": "^2.3.7",
         "vue": "^3.0.5",
         "vue-router": "^4.0.10"
     },
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "main": "./dist/quick-admin-panel-vue.umd.js",
     "module": "./dist/quick-admin-panel-vue.es.js",
     "exports": {
@@ -21,6 +25,7 @@
             "import": "./dist/quick-admin-panel-vue.es.js",
             "require": "./dist/quick-admin-panel-vue.umd.js"
         },
-        "./dist/style.css": "./dist/style.css"
+        "./dist/style.css": "./dist/style.css",
+        "./dist/buttons-style-1.css": "./dist/buttons-style-1.css"
     }
 }

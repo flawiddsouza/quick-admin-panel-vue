@@ -1,5 +1,1 @@
-node_modules
-.DS_Store
-dist/favicon.ico
-dist-ssr
-*.local
+/node_modules

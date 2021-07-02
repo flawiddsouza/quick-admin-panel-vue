@@ -6,10 +6,13 @@
                 <router-link to="/demos/container">Container + Page</router-link>
             </li>
             <li>
-                <router-link to="/demos/DataTable">DataTable</router-link>
+                <router-link to="/demos/datatable">DataTable</router-link>
             </li>
             <li>
-                <router-link to="/demos/Loading">Loading</router-link>
+                <router-link to="/demos/loading">Loading</router-link>
+            </li>
+            <li>
+                <router-link to="/demos/buttons-style-1">Buttons Style 1</router-link>
             </li>
         </ul>
     </div>
