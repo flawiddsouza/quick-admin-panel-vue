@@ -1,6 +1,11 @@
 <template>
     <Container :sidebar-items="sidebarItems">
-        <Page :title="selectedItem.name" v-if="selectedItem">{{ selectedItem }}</Page>
+        <Page :title="selectedItem.name" v-if="selectedItem">
+            <template #title-right-content>
+                {{ selectedItem.link}}
+            </template>
+            {{ selectedItem }}
+        </Page>
         <template #sidebar-item="{ sidebarItem, selectSidebarItem, isActive }">
             <a @click="handleClick(sidebarItem, selectSidebarItem)" :class="{ 'active': isActive }">{{ sidebarItem.name }}</a>
         </template>

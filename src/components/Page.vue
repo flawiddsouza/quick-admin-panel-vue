@@ -1,12 +1,12 @@
 <template>
     <div style="height: calc(100vh - 5.5rem)">
         <div class="page">
-            <h2 class="heading-underline">
-                {{ title }}
+            <div class="heading-underline">
+                <h2>{{ title }}</h2>
                 <div>
                     <slot name="title-right-content"></slot>
                 </div>
-            </h2>
+            </div>
             <div>
                 <slot></slot>
             </div>
@@ -33,12 +33,16 @@ div.page {
     overflow: auto;
 }
 
-h2.heading-underline {
+div.heading-underline {
     display: flex;
     justify-content: space-between;
-    margin: 0;
+    align-items: center;
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 8px;
     margin-bottom: 10px;
+}
+
+div.heading-underline > h2 {
+    margin: 0
 }
 </style>
