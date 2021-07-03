@@ -28,6 +28,7 @@
             "require": "./dist/quick-admin-panel-vue.umd.js"
         },
         "./dist/style.css": "./dist/style.css",
-        "./dist/buttons-style-1.css": "./dist/buttons-style-1.css"
+        "./dist/buttons-style-1.css": "./dist/buttons-style-1.css",
+        "./dist/buttons-style-1-small.css": "./dist/buttons-style-1-small.css"
     }
 }

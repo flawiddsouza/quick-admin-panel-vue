@@ -22,3 +22,4 @@ function generateCSSFromSCSS(inputFilePath, outputFilePath, outputStyle='expande
 }
 
 generateCSSFromSCSS(path.resolve(__dirname, './src/sass/buttons-style-1.scss'), path.resolve(__dirname, './dist/buttons-style-1.css'))
+generateCSSFromSCSS(path.resolve(__dirname, './src/sass/buttons-style-1-small.scss'), path.resolve(__dirname, './dist/buttons-style-1-small.css'))
