@@ -32,6 +32,29 @@ function getDefaultHeaders() {
     }
 }
 
+async function handlePOST(method, url, data, multipartFormData) {
+    let response = null
+
+    let headers = getDefaultHeaders()
+
+    if(multipartFormData === false) {
+        response = await fetch(url, {
+            method: method,
+            headers: headers,
+            body: JSON.stringify(data)
+        })
+    } else {
+        delete headers['Content-Type']
+        response = await fetch(url, {
+            method: method,
+            headers: headers,
+            body: data
+        })
+    }
+
+    return await handleResponse(response)
+}
+
 export default {
     async get(url) {
         const response = await fetch(url, {
@@ -42,24 +65,12 @@ export default {
         return await handleResponse(response)
     },
 
-    async post(url, data={}) {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: getDefaultHeaders(),
-            body: JSON.stringify(data)
-        })
-
-        return await handleResponse(response)
+    async post(url, data={}, multipartFormData=false) {
+        return await handlePOST('POST', url, data, multipartFormData)
     },
 
-    async put(url, data={}) {
-        const response = await fetch(url, {
-            method: 'PUT',
-            headers: getDefaultHeaders(),
-            body: JSON.stringify(data)
-        })
-
-        return await handleResponse(response)
+    async put(url, data={}, multipartFormData=false) {
+        return await handlePOST('PUT', url, data, multipartFormData)
     },
 
     async delete(url) {
