@@ -16,6 +16,7 @@
   transition: all 20ms ease-out;
   vertical-align: top;
   user-select: none;
+  white-space: nowrap;
 }
 .button:hover, .button:focus {
   background: #7568ba;
