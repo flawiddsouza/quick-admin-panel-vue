@@ -51,8 +51,8 @@ export default {
 }
 
 .modal__container {
-    width: 95vw;
-    max-width: 600px;
+    min-width: 600px;
+    max-width: 95vw;
     position: relative;
     overflow: hidden;
     border-radius: 4px;
