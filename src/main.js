@@ -10,8 +10,10 @@ import Loading from '@/views/demos/Loading.vue'
 import ButtonsStyle1 from '@/views/demos/ButtonsStyle1.vue'
 import Tabs from '@/views/demos/Tabs.vue'
 import Modal from '@/views/demos/Modal.vue'
+import Notify from '@/views/demos/Notify.vue'
 
-import loading from './plugins/loading'
+import loading from '@/plugins/loading'
+import notify from '@/plugins/notify'
 
 const routes = [
     { path: '/', component: Home },
@@ -21,6 +23,7 @@ const routes = [
     { path: '/demos/buttons-style-1', component: ButtonsStyle1 },
     { path: '/demos/tabs', component: Tabs },
     { path: '/demos/modal', component: Modal },
+    { path: '/demos/notify', component: Notify },
 ]
 
 const router = createRouter({
@@ -31,4 +34,5 @@ const router = createRouter({
 createApp(App)
 .use(router)
 .use(loading)
+.use(notify)
 .mount('#app')

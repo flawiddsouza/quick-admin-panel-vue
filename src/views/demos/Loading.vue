@@ -19,7 +19,7 @@ function startLoader() {
     }, 3000)
 }
 
-// old method, still works:
+// Options API:
 // export default {
 //     methods: {
 //         startLoader() {

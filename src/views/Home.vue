@@ -20,6 +20,9 @@
             <li>
                 <router-link to="/demos/modal">Modal</router-link>
             </li>
+            <li>
+                <router-link to="/demos/notify">Notify</router-link>
+            </li>
         </ul>
     </div>
 </template>
