@@ -40,7 +40,7 @@
                                 <slot name="item-actions" :item="item"></slot>
                             </td>
                             <template v-for="field in fields">
-                                <td>{{ item[field.field] }}</td>
+                                <td v-html="getDisplayContent(field, item[field.field])"></td>
                             </template>
                         </tr>
                         <tr v-if="items.length === 0">
@@ -321,6 +321,12 @@ export default {
                     this.selectedCheckboxesVirtual.push(item[this.checkboxField])
                 })
             }
+        },
+        getDisplayContent(field, value) {
+            if('transformValue' in field) {
+                return field.transformValue(value)
+            }
+            return value
         }
     },
     created() {
