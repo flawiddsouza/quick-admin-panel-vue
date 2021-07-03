@@ -334,12 +334,15 @@ export default {
             this.fetchItemsForPage(1, true)
         }
         if(this.bus) {
-            this.bus.on('refreshDataTable', () => {
-                this.refreshDataTable()
-            })
+            this.bus.on('refreshDataTable', this.refreshDataTable)
         }
         if(this.checkboxes) {
             this.$emit('update:selectedCheckboxes', [])
+        }
+    },
+    unmounted() {
+        if(this.bus) {
+            this.bus.off('refreshDataTable', this.refreshDataTable)
         }
     }
 }
