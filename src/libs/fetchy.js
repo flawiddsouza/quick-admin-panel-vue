@@ -1,11 +1,19 @@
-async function handleResponse(response) {
+async function handleResponse(response, responseInterceptor) {
     const responseText = await response.text()
 
+    let responseToReturn = {}
+
     try {
-        return { data: JSON.parse(responseText), status: response.status }
+        responseToReturn = { data: JSON.parse(responseText), status: response.status }
     } catch {
-        return { data: responseText, status: response.status }
+        responseToReturn = { data: responseText, status: response.status }
     }
+
+    if(responseInterceptor) {
+        return responseInterceptor(responseToReturn)
+    }
+
+    return responseToReturn
 }
 
 function getCookie(name) {
@@ -32,7 +40,7 @@ function getDefaultHeaders() {
     }
 }
 
-async function handlePOST(method, url, data, multipartFormData) {
+async function handlePOST(method, url, data, multipartFormData, responseInterceptor) {
     let response = null
 
     let headers = getDefaultHeaders()
@@ -52,25 +60,27 @@ async function handlePOST(method, url, data, multipartFormData) {
         })
     }
 
-    return await handleResponse(response)
+    return await handleResponse(response, responseInterceptor)
 }
 
 export default {
+    responseInterceptor: null,
+
     async get(url) {
         const response = await fetch(url, {
             method: 'GET',
             headers: getDefaultHeaders()
         })
 
-        return await handleResponse(response)
+        return await handleResponse(response, this.responseInterceptor)
     },
 
     async post(url, data={}, multipartFormData=false) {
-        return await handlePOST('POST', url, data, multipartFormData)
+        return await handlePOST('POST', url, data, multipartFormData, this.responseInterceptor)
     },
 
     async put(url, data={}, multipartFormData=false) {
-        return await handlePOST('PUT', url, data, multipartFormData)
+        return await handlePOST('PUT', url, data, multipartFormData, this.responseInterceptor)
     },
 
     async delete(url) {
@@ -79,6 +89,6 @@ export default {
             headers: getDefaultHeaders(),
         })
 
-        return await handleResponse(response)
+        return await handleResponse(response, this.responseInterceptor)
     }
 }
