@@ -71,6 +71,7 @@
 <script>
 import DataTable from './DataTable.vue'
 import CheckboxMultiselect from './CheckboxMultiselect.vue'
+import createConfirm from '../libs/createConfirm'
 
 export default {
     props: {
@@ -202,7 +203,7 @@ export default {
             loader.hide()
         },
         async deleteItem(id) {
-            if(!confirm('Are you sure you want to delete this item?')) {
+            if(!await createConfirm('Are you sure you want to delete this item?')) {
                 return
             }
             let loader = this.$loading.show()
