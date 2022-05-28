@@ -31,6 +31,8 @@ div.page {
     box-shadow: 0 0 6px #bbc2ca;
     padding: 10px 20px 30px;
     overflow: auto;
+    display: grid;
+    grid-auto-rows: auto 1fr;
 }
 
 div.heading-underline {
