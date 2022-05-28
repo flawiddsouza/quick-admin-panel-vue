@@ -56,7 +56,7 @@
                             <select v-model="editFormData[field.field]" v-if="field.inputType === 'select'" :required="field.required" class="w-100p">
                                 <option v-for="option in selectData[field.field]" :value="option.value">{{ option.label }}</option>
                             </select>
-                            <CheckboxMultiselect :items="selectData[field.field]" value="value" text="label" v-model:selected-items="editFormData[field.field]" style="width: 100%" v-if="field.inputType === 'multiselect'" />
+                            <CheckboxMultiselect :items="selectData[field.field]" value="value" text="label" v-model:selected-items="editFormData[field.field]" style="width: 100%" v-if="field.inputType === 'multiselect'" :reset-selected-items-on-items-change="false"  />
                         </label>
                     </div>
                 </slot>
