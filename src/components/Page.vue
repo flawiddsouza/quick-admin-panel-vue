@@ -2,7 +2,10 @@
     <div style="height: calc(100vh - 5.5rem)">
         <div class="page">
             <div class="heading-underline">
-                <h2>{{ title }}</h2>
+                <h2>
+                    {{ title }}
+                    <span v-if="title === ''" style="visibility: hidden;">Title</span>
+                </h2>
                 <div>
                     <slot name="title-right-content"></slot>
                 </div>
