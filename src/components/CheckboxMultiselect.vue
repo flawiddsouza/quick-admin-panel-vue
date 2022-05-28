@@ -31,7 +31,11 @@ export default {
         'collapsible': Boolean,
         'containerHeight': String,
         'innerContainerHeight': String,
-        'filterWidth': String
+        'filterWidth': String,
+        'resetSelectedItemsOnItemsChange': {
+            type: Boolean,
+            default: true
+        }
     },
     computed: {
         filteredItems() {
@@ -111,7 +115,7 @@ export default {
             this.handleSelectAllCheckbox()
         },
         items(newItems, oldItems) {
-            if(oldItems) {
+            if(this.resetSelectedItemsOnItemsChange && oldItems) {
                 if(oldItems.length > 0) {
                     this.selectedItemsVirtual = []
                     this.handleChange()
