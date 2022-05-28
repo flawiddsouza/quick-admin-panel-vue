@@ -4,9 +4,9 @@
         <div :style="rootStyle" v-if="expand" v-click-outside="clickOutside">
             <div class="pos-a bc-white" style="padding-bottom: 0.2em" v-if="items && items.length > 0">
                 <div><input type="search" v-model="filter" placeholder="Filter..." class="va-s" :style="{ width: filterWidth ? filterWidth : null }"></div>
-                <div v-if="filteredItems && filteredItems.length > 0" style="padding-top: 0.2em" class="bb-grey"><label :style="labelStyle"><input type="checkbox" value="true" v-model="selectAll" @change="selectAllChanged"> Select All</label></div>
+                <div v-if="filteredItems && filteredItems.length > 0" style="padding-top: 0.5rem" class="bb-grey"><label :style="labelStyle"><input type="checkbox" value="true" v-model="selectAll" @change="selectAllChanged"> Select All</label></div>
             </div>
-            <div v-if="items && items.length > 0 && filteredItems && filteredItems.length === 0" style="margin-top: 2.2em; font-size: 0.9em">
+            <div v-if="items && items.length > 0 && filteredItems && filteredItems.length === 0" style="margin-top: 2.2rem; font-size: 0.9rem">
                 No Records Found
             </div>
             <div v-if="items && items.length === 0" style="font-size: 0.9em">
