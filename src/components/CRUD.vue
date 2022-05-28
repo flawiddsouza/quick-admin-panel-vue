@@ -33,6 +33,7 @@
                             <select v-model="formData[field.field]" v-if="field.inputType === 'select'" :required="field.required" class="w-100p">
                                 <option v-for="option in selectData[field.field]" :value="option.value">{{ option.label }}</option>
                             </select>
+                            <CheckboxMultiselect :items="selectData[field.field]" value="value" text="label" v-model:selected-items="formData[field.field]" style="width: 100%" v-if="field.inputType === 'multiselect'" />
                         </label>
                     </div>
                 </slot>
@@ -55,6 +56,7 @@
                             <select v-model="editFormData[field.field]" v-if="field.inputType === 'select'" :required="field.required" class="w-100p">
                                 <option v-for="option in selectData[field.field]" :value="option.value">{{ option.label }}</option>
                             </select>
+                            <CheckboxMultiselect :items="selectData[field.field]" value="value" text="label" v-model:selected-items="editFormData[field.field]" style="width: 100%" v-if="field.inputType === 'multiselect'" />
                         </label>
                     </div>
                 </slot>
@@ -68,6 +70,7 @@
 
 <script>
 import DataTable from './DataTable.vue'
+import CheckboxMultiselect from './CheckboxMultiselect.vue'
 
 export default {
     props: {
@@ -88,7 +91,8 @@ export default {
         }
     },
     components: {
-        DataTable
+        DataTable,
+        CheckboxMultiselect
     },
     data() {
         return {
