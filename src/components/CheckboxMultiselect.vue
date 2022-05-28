@@ -4,7 +4,7 @@
         <div :style="rootStyle" v-if="expand" v-click-outside="clickOutside">
             <div class="pos-a bc-white" style="padding-bottom: 0.2em" v-if="items && items.length > 0">
                 <div><input type="search" v-model="filter" placeholder="Filter..." class="va-s" :style="{ width: filterWidth ? filterWidth : null }"></div>
-                <div v-if="filteredItems && filteredItems.length > 0" style="padding-top: 0.2em" class="bb-grey"><label :style="labelStyle"><input type="checkbox" value="true" v-model="selectAll" @change="selectAllChanged" style="vertical-align: sub"> Select All</label></div>
+                <div v-if="filteredItems && filteredItems.length > 0" style="padding-top: 0.2em" class="bb-grey"><label :style="labelStyle"><input type="checkbox" value="true" v-model="selectAll" @change="selectAllChanged"> Select All</label></div>
             </div>
             <div v-if="items && items.length > 0 && filteredItems && filteredItems.length === 0" style="margin-top: 2.2em; font-size: 0.9em">
                 No Records Found
@@ -14,7 +14,7 @@
             </div>
             <div class="o-a" :style="{ height: innerContainerHeight ? innerContainerHeight : '7em', marginTop: '4em' }" v-if="items && items.length > 0 && filteredItems && filteredItems.length > 0">
                 <div v-for="item in filteredItems">
-                    <label :style="labelStyle"><input type="checkbox" :value="item[value]" @change="handleChange" style="vertical-align: sub" v-model="selectedItemsVirtual"> {{ item[text] }}</label>
+                    <label :style="labelStyle"><input type="checkbox" :value="item[value]" @change="handleChange" v-model="selectedItemsVirtual"> {{ item[text] }}</label>
                 </div>
             </div>
         </div>
@@ -173,5 +173,9 @@ export default {
 
 .o-a {
     overflow: auto;
+}
+
+input[type="checkbox"] {
+    vertical-align: -2px;
 }
 </style>
