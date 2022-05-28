@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <DataTable :url="url" :fields="fields.filter(field => !field.formOnly)" item-actions-width="12em" table-height="calc(100vh - 18.5em)" button-class="button" :bus="bus">
+    <div style="height: 100%">
+        <DataTable :url="url" :fields="fields.filter(field => !field.formOnly)" item-actions-width="12em" button-class="button" :bus="bus">
             <template #actions>
                 <a class="button" @click="showAddModal = true">
                     <i class="fas fa-plus"></i>

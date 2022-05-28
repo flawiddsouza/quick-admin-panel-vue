@@ -51,28 +51,30 @@
             </table>
         </div>
         <br>
-        <div style="float: left">
-            <template v-if="paginator.total > 0">
-                From {{ paginator.from }} to {{ paginator.to }} of {{ paginator.total }} entries (filtered from {{ paginator.unfilteredTotal }} total records) {{ selectedItemsCountText }}
-            </template>
-            <template v-else>
-                No records were found (filtered from {{ paginator.unfilteredTotal }} total records)
-            </template>
-        </div>
-        <div class="paginator" :class="{ 'disable-all': loading }">
-            <button :class="buttonClass" @click="fetchItemsForPage(paginator.firstPage)" :disabled="paginator.firstPage === paginator.currentPage">First</button>
-            <button :class="buttonClass" @click="fetchItemsForPage(paginator.currentPage - 1)" :disabled="paginator.firstPage === paginator.currentPage">&lt;</button>
-            <button @click="fetchItemsForPage(pageSwitch - 3)" :class="{active: (pageSwitch - 3) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 3">{{ pageSwitch - 3 }}</button>
-            <button @click="fetchItemsForPage(pageSwitch - 2)" :class="{active: (pageSwitch - 2) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 2">{{ pageSwitch -2 }}</button>
-            <button @click="fetchItemsForPage(pageSwitch - 1)" :class="{active: (pageSwitch - 1) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 1">{{ pageSwitch - 1 }}</button>
-            <button @click="fetchItemsForPage(pageSwitch)" :class="{active: pageSwitch === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch">{{ pageSwitch }}</button>
-            <template v-if="paginator.lastPage > 4">
-                <span>...</span>
-                <button @click="fetchItemsForPage(paginator.lastPage - 1)" v-if="(paginator.lastPage - 1) > 0 && paginator.firstPage !== (paginator.lastPage - 1) && (paginator.lastPage - 1) > 4" :class="{active: (paginator.lastPage - 1) === paginator.currentPage, [buttonClass]: buttonClass ?? false}">{{ paginator.lastPage - 1 }}</button>
-                <button @click="fetchItemsForPage(paginator.lastPage)" v-if="paginator.lastPage !== paginator.firstPage" :class="{active: paginator.lastPage === paginator.currentPage, [buttonClass]: buttonClass ?? false}">{{ paginator.lastPage }}</button>
-            </template>
-            <button :class="buttonClass" @click="fetchItemsForPage(paginator.currentPage + 1)" :disabled="paginator.lastPage === paginator.currentPage">&gt;</button>
-            <button :class="buttonClass" @click="fetchItemsForPage(paginator.lastPage)" :disabled="paginator.lastPage === paginator.currentPage">Last</button>
+        <div style="display: flex; justify-content: space-between;">
+            <div>
+                <template v-if="paginator.total > 0">
+                    From {{ paginator.from }} to {{ paginator.to }} of {{ paginator.total }} entries (filtered from {{ paginator.unfilteredTotal }} total records) {{ selectedItemsCountText }}
+                </template>
+                <template v-else>
+                    No records were found (filtered from {{ paginator.unfilteredTotal }} total records)
+                </template>
+            </div>
+            <div class="paginator" :class="{ 'disable-all': loading }">
+                <button :class="buttonClass" @click="fetchItemsForPage(paginator.firstPage)" :disabled="paginator.firstPage === paginator.currentPage">First</button>
+                <button :class="buttonClass" @click="fetchItemsForPage(paginator.currentPage - 1)" :disabled="paginator.firstPage === paginator.currentPage">&lt;</button>
+                <button @click="fetchItemsForPage(pageSwitch - 3)" :class="{active: (pageSwitch - 3) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 3">{{ pageSwitch - 3 }}</button>
+                <button @click="fetchItemsForPage(pageSwitch - 2)" :class="{active: (pageSwitch - 2) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 2">{{ pageSwitch -2 }}</button>
+                <button @click="fetchItemsForPage(pageSwitch - 1)" :class="{active: (pageSwitch - 1) === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch - 1">{{ pageSwitch - 1 }}</button>
+                <button @click="fetchItemsForPage(pageSwitch)" :class="{active: pageSwitch === paginator.currentPage, [buttonClass]: buttonClass ?? false}" v-if="paginator.lastPage >= pageSwitch">{{ pageSwitch }}</button>
+                <template v-if="paginator.lastPage > 4">
+                    <span>...</span>
+                    <button @click="fetchItemsForPage(paginator.lastPage - 1)" v-if="(paginator.lastPage - 1) > 0 && paginator.firstPage !== (paginator.lastPage - 1) && (paginator.lastPage - 1) > 4" :class="{active: (paginator.lastPage - 1) === paginator.currentPage, [buttonClass]: buttonClass ?? false}">{{ paginator.lastPage - 1 }}</button>
+                    <button @click="fetchItemsForPage(paginator.lastPage)" v-if="paginator.lastPage !== paginator.firstPage" :class="{active: paginator.lastPage === paginator.currentPage, [buttonClass]: buttonClass ?? false}">{{ paginator.lastPage }}</button>
+                </template>
+                <button :class="buttonClass" @click="fetchItemsForPage(paginator.currentPage + 1)" :disabled="paginator.lastPage === paginator.currentPage">&gt;</button>
+                <button :class="buttonClass" @click="fetchItemsForPage(paginator.lastPage)" :disabled="paginator.lastPage === paginator.currentPage">Last</button>
+            </div>
         </div>
     </div>
 </template>
@@ -349,8 +351,14 @@ export default {
 </script>
 
 <style scoped>
+.datatable {
+    display: grid;
+    grid-auto-rows: auto auto 1fr auto auto;
+    height: 100%;
+}
+
 .datatable .table-container {
-    height: calc(100vh - 23em);
+    height: 100%;
     overflow: auto;
 }
 
@@ -418,10 +426,6 @@ export default {
 
 .datatable .ta-c {
     text-align: center;
-}
-
-.paginator {
-    float: right;
 }
 
 .paginator button {

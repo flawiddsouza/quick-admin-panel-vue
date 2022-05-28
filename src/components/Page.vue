@@ -52,5 +52,6 @@ div.heading-underline > h2 {
 
 div.page-content {
     overflow: auto;
+    height: 100%;
 }
 </style>
