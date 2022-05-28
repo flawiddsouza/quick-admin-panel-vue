@@ -10,7 +10,7 @@
                     <slot name="title-right-content"></slot>
                 </div>
             </div>
-            <div>
+            <div class="page-content">
                 <slot></slot>
             </div>
         </div>
@@ -33,7 +33,6 @@ div.page {
     background-color: white;
     box-shadow: 0 0 6px #bbc2ca;
     padding: 10px 20px 30px;
-    overflow: auto;
     display: grid;
     grid-auto-rows: auto 1fr;
 }
@@ -49,5 +48,9 @@ div.heading-underline {
 
 div.heading-underline > h2 {
     margin: 0
+}
+
+div.page-content {
+    overflow: auto;
 }
 </style>
