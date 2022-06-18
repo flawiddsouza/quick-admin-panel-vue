@@ -24,7 +24,7 @@
                 <slot name="add-modal" :form-data="formData">
                     <div v-for="(field, index) in fields.filter(field => !field.viewOnly)">
                         <label :class="{ 'mt-0_5rem': index > 0 }" class="d-b">
-                            <div class="mb-0_3rem">{{ field.label }}</div>
+                            <div class="mb-0_3rem">{{ field.label }}<span style="color: red" v-if="field.required"> *</span></div>
                             <input type="text" v-model="formData[field.field]" v-if="field.inputType === 'text'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
                             <input type="email" v-model="formData[field.field]" v-if="field.inputType === 'email'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
                             <input type="password" v-model="formData[field.field]" v-if="field.inputType === 'password'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
@@ -47,7 +47,7 @@
                 <slot name="edit-modal" :edit-form-data="editFormData" :show-edit-modal="showEditModal">
                     <div v-for="(field, index) in fields.filter(field => !field.viewOnly)">
                         <label :class="{ 'mt-0_5rem': index > 0 }" class="d-b" v-if="!field.addOnly">
-                            <div class="mb-0_3rem">{{ field.label }}</div>
+                            <div class="mb-0_3rem">{{ field.label }}<span style="color: red" v-if="field.required"> *</span></div>
                             <input type="text" v-model="editFormData[field.field]" v-if="field.inputType === 'text'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
                             <input type="email" v-model="editFormData[field.field]" v-if="field.inputType === 'email'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
                             <input type="password" v-model="editFormData[field.field]" v-if="field.inputType === 'password'" :required="field.required" @keydown="checkMaxLength($event, field.maxLength)" class="w-100p">
