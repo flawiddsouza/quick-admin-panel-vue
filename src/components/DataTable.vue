@@ -41,7 +41,7 @@
                                 <slot name="item-actions" :item="item"></slot>
                             </td>
                             <template v-for="field in fields">
-                                <td v-html="getDisplayContent(field, item[field.field])"></td>
+                                <td v-html="getDisplayContent(field, item[field.field])" :style="{ 'text-align': field.align ?? 'left' }"></td>
                             </template>
                         </tr>
                         <tr v-if="items.length === 0">
