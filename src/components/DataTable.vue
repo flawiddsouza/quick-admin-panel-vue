@@ -5,6 +5,7 @@
                 <slot name="actions"></slot>
             </div>
             <div>
+                <button @click="exportExcel" style="margin-right: 0.5rem;" :class="buttonClass" v-if="enableExport">Export</button>
                 <button @click="refreshDataTable" :class="buttonClass"><i class="fas fa-sync-alt" :class="{ 'fa-spin': refreshingDataTable }"></i> Refresh</button>
                 <input type="search" v-model="filter" @input="filterItems" style="margin-left: 0.5em" placeholder="Search...">
             </div>
@@ -95,6 +96,14 @@ function debounce(func, wait, immediate) {
     }
 }
 
+function stripTrailingSlash(str) {
+    if(str.substr(-1) === '/') {
+        return str.substr(0, str.length - 1)
+    }
+
+    return str
+}
+
 export default {
     props: {
         url: String,
@@ -114,6 +123,18 @@ export default {
         buttonClass: {
             type: String,
             required: false
+        },
+        enableExport: {
+            type: Boolean,
+            default: false
+        },
+        excludeFromExport: {
+            type: Array,
+            default: () => []
+        },
+        usePostExport: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -329,6 +350,42 @@ export default {
                 return field.transformValue(value)
             }
             return value
+        },
+        exportExcel() {
+            let route = this.url.split('?')
+            if(route.length > 1) {
+                route = this.url + '&'
+            } else {
+                route = this.url + '?'
+            }
+
+            let fieldsForExport = JSON.parse(JSON.stringify(this.fields))
+
+            fieldsForExport = fieldsForExport.filter(field => !(this.excludeFromExport.includes(field.field)))
+
+            if(!this.usePostExport) {
+                window.open(`${stripTrailingSlash(baseURL)}${route}page=${this.paginator.currentPage}&filter=${encodeURIComponent(this.filter)}&sort_by=${this.sortField}&sort_order=${this.sortOrder}&limit=${this.limit ? this.limit : ''}&fields=${encodeURIComponent(JSON.stringify(fieldsForExport))}&export=true`, '_blank')
+            } else {
+                let loader = this.$loading.show()
+                fetch(`${stripTrailingSlash(baseURL)}${route}page=${this.paginator.currentPage}&filter=${encodeURIComponent(this.filter)}&sort_by=${this.sortField}&sort_order=${this.sortOrder}&limit=${this.limit ? this.limit : ''}&export=true`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        fields: JSON.stringify(fieldsForExport)
+                    }),
+                    credentials: 'include',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => response.blob()).then(blob => {
+                    var link = document.createElement('a')
+                    link.href = window.URL.createObjectURL(blob)
+                    link.download = 'Export.xlsx'
+                    document.body.appendChild(link)
+                    link.click()
+                    document.body.removeChild(link)
+                    loader.hide()
+                })
+            }
         }
     },
     created() {
